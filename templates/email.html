@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Email Details</h1>
+    <p><strong>From:</strong> {{ email.sender }}</p>
+    <p><strong>Subject:</strong> {{ email.subject }}</p>
+    <hr>
+    <div class="email-body">
+        <p>{{ email.body | safe }}</p> <!-- Using | safe in case of HTML content -->
+    </div>
+    <br>
+    <a href="{{ url_for('index') }}"><button>Back to Inbox</button></a>
+</body>
+</html>

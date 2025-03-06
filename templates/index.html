@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inbox</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Your Unread Emails</h1>
+    
+    <div class="top-bar">
+        <!-- Updated route for selecting important senders -->
+        <form action="/select_important_senders" method="get">
+            <button type="submit">Manage Important Senders</button>
+        </form>
+    </div>
+
+    <table>
+        <tr>
+            <th>From</th>
+            <th>Subject</th>
+            <th>Priority</th>
+        </tr>
+        {% for email in emails %}
+        <tr>
+            <td>{{ email.from }}</td>  <!-- Kept this unchanged -->
+            <td>
+                <a href="{{ url_for('view_email', email_id=email.id) }}">
+                    {{ email.subject }}
+                </a>
+            </td>
+            <td>{{ email.priority }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
